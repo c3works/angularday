@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			spa: {
-				files: './index.html',
+				files: '*.html',
 				options: {
 					livereload: true
 				}

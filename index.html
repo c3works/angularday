@@ -4,31 +4,72 @@
 		<title>Angular Day Workshop</title>
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="styles/main.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-route.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-resource.js"></script>
 		<script src="scripts/main.js"></script>
+		<script src="scripts/routes.js"></script>
 
 	</head>
 
-	<body class="container">
 
-		<div ng-controller="personController">
+<body class="container">
 
-			<input ng-model='firstName'>{{firstName}}</input>
-			<input ng-model='lastName'>{{lastName}}</input>
+	<ng:view></ng:view>
 
-			<p><button ng-click="cool = true">Cool Me</button>
 
-			<span ng-show="cool">Coolio!</span></p>
 
-			
-			<input ng-model="people[0].name">
-			<hr/>
-			
-			<ul>
-				<li ng-repeat="person in people | orderBy: '+name'">{{person.name | uppercase | isCool}}</li>
-			</ul>
 
+
+<!-- MORNING CODE -->
+
+
+<!--
+
+<div ng-controller="personController">
+
+		<ul>
+			<li ng-repeat="person in people.data">{{person.fname}} {{person.lname}}</li>
+		</ul>
+
+
+
+
+		<quote author="Clint Eastwood" year="2013" on-click="clickMe()">
+				Go Ahead! Make my day.
+		</quote>
+
+		<div loser>Loser</div>
+
+	
+		<div badguy ng-click="clickMe()"></div>
+
+
+		<div>
+			<blockquote>
+				<p>Lorem Ipsum</p>
+				<small>Plato</small>
+			</blockquote>
 		</div>
+
+
+		<input ng-model='firstName'>{{firstName}}</input>
+		<input ng-model='lastName'>{{lastName}}</input>
+
+		<p><button ng-click="cool = true">Cool Me</button>
+
+		<span ng-show="cool">Coolio!</span></p>
+
+		
+		<input ng-model="people[0].name">
+		<hr/>
+		
+		<ul>
+			<li ng-repeat="person in people | orderBy: '+name'">{{person.name | uppercase | isCool}}</li>
+		</ul>
+
+	</div> -->
+
 
 	</body>
 </html>

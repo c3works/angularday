@@ -1,4 +1,22 @@
-angular.module('app', []);
+angular.module('app', ['ngResource', 'ngRoute']);
+
+//*** Directives
+angular.module('app').directive('quote', function() {
+	return {
+		//* allows implenting through Element, Attribute, Comment, or Class
+		restrict: 'E',
+		scope: {
+			author: '@',
+			year: '@',     // @ indicates string
+			onClick: '&'  // indicates function   ---  use '=' for expresssions
+		},
+		//template: '<blockquote><p>Lorem ipsum</p><small>{{author}}</small></blockquote>',
+		templateUrl: 'views/quote.html',
+		transclude: true
+	}
+});
+
+
 
 
 //*** Decorator - monkey patching
@@ -36,6 +54,10 @@ angular.module('app').controller('personController', function($scope, $log, pers
 	$scope.firstName = 'Bill';
 	$scope.lastName = 'LaPrise';
 
+	$scope.clickMe = function () {
+		window.alert("Uh oh!");
+	}
+
 
 	$scope.$watch(
 		//** first function is the watched expression
@@ -46,20 +68,48 @@ angular.module('app').controller('personController', function($scope, $log, pers
 		
 		$log.debug('fullName', current);
 		$scope.fullName = current;
+
+		$scope.people = personService.get().success(function (data) {
+			console.log(data);
+		});
+
+		$log.debug($scope.people);
 	});
 });
 
 
-
-//*** Service Example ***
-angular.module('app').service('personService', function($log, peopleValue) {
+//*** Service Example using HTTP call to filltext.com ***
+angular.module('app').service('personService', function($log, $http) {
 
 	$log.debug('init personService');
 
 	this.get = function () {
-		return  peopleValue;
+		var config = {
+			params: {
+				rows: 10,
+				fname: '{firstName}',
+            	lname: '{lastName}',
+				// firstName: 'Bill',
+				// ** NEEDED for using JSONP
+				callback: 'JSON_CALLBACK'
+				// delay: 2
+			}
+		};
+
+		return $http.jsonp('http://filltext.com', config);
+
 	};
+
 });
+// //*** Original Service Example ***
+// angular.module('app').service('personService', function($log, peopleValue) {
+
+// 	$log.debug('init personService');
+
+// 	this.get = function () {
+// 		return  peopleValue;
+// 	};
+// });
 
 
 
@@ -73,9 +123,9 @@ angular.module('app').filter('isCool', function(ISCOOL) {
 
 
 //*** Config Example ***
-// angular.module('app').config(function($logProvider) {
-// 	$logProvider.debugEnabled(true);
-// });
+angular.module('app').config(function($logProvider) {
+	$logProvider.debugEnabled(true);
+});
 
 
 
@@ -94,6 +144,27 @@ angular.module('app').constant('ISCOOL', 'is really cool!');
 //**** RUN Example
 angular.module('app').run(function($log) {
 	$log.debug('starting up');
+});
+
+
+//** Other directives
+angular.module('app').directive('badguy', function() {
+
+	return {
+		restrict: 'A',
+		template: '<strong>Always Clint!</strong>'
+	}
+
+});
+
+
+angular.module('app').directive('loser', function() {
+
+	return {
+		restrict: 'A',
+		template: '<strong>Weak Soup!</strong>'
+	}
+
 });
 
 
