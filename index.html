@@ -9,23 +9,23 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-resource.js"></script>
 		<script src="scripts/main.js"></script>
 		<script src="scripts/routes.js"></script>
+		<script src="scripts/directives/badguy.js"></script>
+		<script src="scripts/directives/loser.js"></script>
+		<script src="scripts/controllers/personController.js"></script>
+		<script src="scripts/filters/cool.js"></script>
+		<script src="scripts/services/personService.js"></script>
 
 	</head>
 
 
 <body class="container">
 
-	<ng:view></ng:view>
-
-
+<!-- AFTERNOON CODE - ROUTES -->
+<!-- 	<ng:view></ng:view> -->
 
 
 
 <!-- MORNING CODE -->
-
-
-<!--
-
 <div ng-controller="personController">
 
 		<ul>
@@ -35,7 +35,7 @@
 
 
 
-		<quote author="Clint Eastwood" year="2013" on-click="clickMe()">
+		<quote author="Clint Eastwood" on-click="clickMe()">
 				Go Ahead! Make my day.
 		</quote>
 
@@ -68,7 +68,7 @@
 			<li ng-repeat="person in people | orderBy: '+name'">{{person.name | uppercase | isCool}}</li>
 		</ul>
 
-	</div> -->
+	</div> 
 
 
 	</body>
